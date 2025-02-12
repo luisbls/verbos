@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentra los Verbos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .options button {
+            font-size: 18px;
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #feedback {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encuentra los Verbos</h1>
+    
+    <div id="exercise-container"></div>
+    <p id="feedback"></p>
+    
+    <script>
+        const exercises = [
+            { sentence: "María corre en el parque.", options: ["María", "corre", "parque"], answer: "corre" },
+            { sentence: "Pedro juega con su perro.", options: ["Pedro", "juega", "perro"], answer: "juega" },
+            { sentence: "Nosotros viajamos a la playa.", options: ["Nosotros", "viajamos", "playa"], answer: "viajamos" },
+            { sentence: "El bebé llora mucho.", options: ["bebé", "llora", "mucho"], answer: "llora" },
+            { sentence: "Ana estudia para el examen.", options: ["Ana", "estudia", "examen"], answer: "estudia" },
+            { sentence: "El perro ladra fuerte.", options: ["perro", "ladra", "fuerte"], answer: "ladra" },
+            { sentence: "Carlos lee un libro.", options: ["Carlos", "lee", "libro"], answer: "lee" },
+            { sentence: "Nosotros bailamos en la fiesta.", options: ["Nosotros", "bailamos", "fiesta"], answer: "bailamos" },
+            { sentence: "Tú cantas muy bien.", options: ["Tú", "cantas", "bien"], answer: "cantas" },
+            { sentence: "El gato duerme en la cama.", options: ["gato", "duerme", "cama"], answer: "duerme" },
+            { sentence: "Mi hermano cocina la cena.", options: ["hermano", "cocina", "cena"], answer: "cocina" },
+            { sentence: "Ellos nadan en la piscina.", options: ["Ellos", "nadan", "piscina"], answer: "nadan" },
+            { sentence: "Tú escribes una carta.", options: ["Tú", "escribes", "carta"], answer: "escribes" },
+            { sentence: "Nosotros saltamos la cuerda.", options: ["Nosotros", "saltamos", "cuerda"], answer: "saltamos" },
+            { sentence: "El profesor explica la lección.", options: ["profesor", "explica", "lección"], answer: "explica" },
+            { sentence: "Mi mamá limpia la casa.", options: ["mamá", "limpia", "casa"], answer: "limpia" },
+            { sentence: "Los niños corren rápido.", options: ["niños", "corren", "rápido"], answer: "corren" },
+            { sentence: "Yo compro pan en la tienda.", options: ["Yo", "compro", "pan"], answer: "compro" },
+            { sentence: "Mi papá trabaja mucho.", options: ["papá", "trabaja", "mucho"], answer: "trabaja" },
+            { sentence: "Ellas visitan a su abuela.", options: ["Ellas", "visitan", "abuela"], answer: "visitan" },
+            { sentence: "Pedro pinta un cuadro.", options: ["Pedro", "pinta", "cuadro"], answer: "pinta" },
+            { sentence: "María dibuja un paisaje.", options: ["María", "dibuja", "paisaje"], answer: "dibuja" },
+            { sentence: "Tú manejas el auto.", options: ["Tú", "manejas", "auto"], answer: "manejas" },
+            { sentence: "Nosotros escuchamos música.", options: ["Nosotros", "escuchamos", "música"], answer: "escuchamos" },
+            { sentence: "Ellos estudian en la biblioteca.", options: ["Ellos", "estudian", "biblioteca"], answer: "estudian" },
+            { sentence: "Carlos abre la puerta.", options: ["Carlos", "abre", "puerta"], answer: "abre" },
+            { sentence: "El chef prepara la comida.", options: ["chef", "prepara", "comida"], answer: "prepara" },
+            { sentence: "Los niños saltan en el parque.", options: ["niños", "saltan", "parque"], answer: "saltan" },
+            { sentence: "El piloto vuela el avión.", options: ["piloto", "vuela", "avión"], answer: "vuela" }
+        ];
+
+        function loadExercises() {
+            let container = document.getElementById("exercise-container");
+            container.innerHTML = "";
+            exercises.forEach((ex, index) => {
+                let div = document.createElement("div");
+                div.innerHTML = `<p class='question'><strong>${ex.sentence}</strong></p>` +
+                                `<div class='options'>` +
+                                ex.options.map(word => `<button onclick='checkAnswer(this, "${word}", "${ex.answer}")'>${word}</button>`).join(" ") +
+                                `</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        function checkAnswer(button, selected, correct) {
+            let feedback = document.getElementById("feedback");
+            if (selected === correct) {
+                feedback.textContent = "¡Correcto! '" + correct + "' es el verbo.";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Incorrecto. Inténtalo de nuevo.";
+                feedback.style.color = "red";
+            }
+        }
+
+        window.onload = loadExercises;
+    </script>
+</body>
+</html>
